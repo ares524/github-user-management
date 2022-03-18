@@ -20,7 +20,27 @@ export const homepageRoutes: Array<RouteRecordRaw> = [
         meta: {
           backRoute: 'Homepage',
           isPopup: true,
-          title: 'Delete Item | Frontend Test',
+          title: 'Delete Airport | Frontend Test',
+        },
+      },
+      {
+        path: 'add',
+        name: 'PopupAddAirport',
+        component: () => import('@/components/homepage/popups/PopupAddAirport.vue'),
+        meta: {
+          backRoute: 'Homepage',
+          isPopup: true,
+          title: 'Add Airport | Frontend Test',
+        },
+      },
+      {
+        path: 'edit/:itemId',
+        name: 'PopupEditAirport',
+        component: () => import('@/components/homepage/popups/PopupEditAirport.vue'),
+        meta: {
+          backRoute: 'Homepage',
+          isPopup: true,
+          title: 'Edit Airport | Frontend Test',
         },
       },
     ],

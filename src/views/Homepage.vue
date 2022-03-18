@@ -2,7 +2,7 @@
   <main class="homepage">
     <div class="add-more">
       <AppInput class="search-name-input" placeholder="search name..." @input="filterValues" />
-      <AppButton> Add </AppButton>
+      <AppButton @click="handleCreate"> Add </AppButton>
     </div>
 
     <AppSkeleton v-if="isAirportLoading" class="special-state" />
@@ -32,7 +32,13 @@
             <div class="airport-cell --region">{{ airport.iso_region }}</div>
             <div class="airport-cell --gps">{{ airport.gps_code }}</div>
             <div class="airport-cell --other">
-              <AppIcon name="edit" :color="variables.cPrimary500" size="md" class="edit-icon" />
+              <AppIcon
+                name="edit"
+                :color="variables.cPrimary500"
+                size="md"
+                class="edit-icon"
+                @click="handleEdit(index)"
+              />
               <AppIcon
                 name="delete"
                 :color="variables.cPrimary500"
@@ -110,8 +116,21 @@ export default defineComponent({
     })
 
     const handleRemove = (index: number) => {
+      // should do this with unique id but this api response does not provide it so decided to use index
       router.push({
         name: 'PopupRemoveItem',
+        params: { itemId: index },
+      })
+    }
+
+    const handleCreate = () => {
+      router.push({ name: 'PopupAddAirport' })
+    }
+
+    const handleEdit = (index: number) => {
+      // should do this with unique id but this api response does not provide it so decided to use index
+      router.push({
+        name: 'PopupEditAirport',
         params: { itemId: index },
       })
     }
@@ -129,6 +148,8 @@ export default defineComponent({
       updatePage,
       filterValues,
       handleRemove,
+      handleEdit,
+      handleCreate,
     }
   },
 })
