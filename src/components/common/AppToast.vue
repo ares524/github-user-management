@@ -1,6 +1,5 @@
 <template>
   <li :class="`toast --${toastType}`">
-    <AppIcon :name="getIconName()" size="md" />
     <p class="toast-content">
       <slot></slot>
     </p>
@@ -9,13 +8,10 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import AppIcon from '@/components/common/AppIcon.vue'
 import { ToastType } from '@/types/toast.model'
 
 export default defineComponent({
-  components: {
-    AppIcon,
-  },
+  components: {},
   props: {
     toastType: {
       type: String as PropType<ToastType>,

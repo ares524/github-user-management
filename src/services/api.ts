@@ -4,7 +4,6 @@ import { ApiErrors, QueryParams } from '@/types/api.model'
 
 const api = axios.create({
   baseURL: 'https://raw.githubusercontent.com',
-  withCredentials: true,
 })
 
 api.interceptors.response.use(
