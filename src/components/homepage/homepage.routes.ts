@@ -12,5 +12,17 @@ export const homepageRoutes: Array<RouteRecordRaw> = [
       useWhiteBackground: true,
       title: 'Homepage | Frontend Test',
     },
+    children: [
+      {
+        path: 'remove/:itemId',
+        name: 'PopupRemoveItem',
+        component: () => import('@/components/homepage/popups/PopupRemoveItem.vue'),
+        meta: {
+          backRoute: 'Homepage',
+          isPopup: true,
+          title: 'Delete Item | Frontend Test',
+        },
+      },
+    ],
   },
 ]

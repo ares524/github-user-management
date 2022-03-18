@@ -33,7 +33,13 @@
             <div class="airport-cell --gps">{{ airport.gps_code }}</div>
             <div class="airport-cell --other">
               <AppIcon name="edit" :color="variables.cPrimary500" size="md" class="edit-icon" />
-              <AppIcon name="delete" :color="variables.cPrimary500" size="md" class="remove-icon" />
+              <AppIcon
+                name="delete"
+                :color="variables.cPrimary500"
+                size="md"
+                class="remove-icon"
+                @click="handleRemove(index)"
+              />
             </div>
           </div>
         </div>
@@ -46,14 +52,16 @@
       class="pagination-section"
       @page-change="updatePage"
     />
+    <router-view></router-view>
   </main>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
 import AppInput from '@/components/common/AppInput.vue'
+import { useRouter } from 'vue-router'
 import AppButton from '@/components/common/AppButton.vue'
-import useHomepageManage from '@/components/hompepage/homepage'
+import useHomepageManage from '@/components/homepage/homepage'
 import AppSkeleton from '@/components/common/AppSkeleton.vue'
 import AppEmptyBox from '@/components/common/AppEmptyBox.vue'
 import AppErrorBox from '@/components/common/AppErrorBox.vue'
@@ -74,6 +82,7 @@ export default defineComponent({
     AppButton,
   },
   setup() {
+    const router = useRouter()
     const { airports, isAirportLoading, isAirportLoaded, isAirportError, searchName, refetchAllAirpot } =
       useHomepageManage()
 
@@ -100,6 +109,13 @@ export default defineComponent({
       }
     })
 
+    const handleRemove = (index: number) => {
+      router.push({
+        name: 'PopupRemoveItem',
+        params: { itemId: index },
+      })
+    }
+
     return {
       airports,
       filteredAirports,
@@ -112,6 +128,7 @@ export default defineComponent({
       refetchAllAirpot,
       updatePage,
       filterValues,
+      handleRemove,
     }
   },
 })

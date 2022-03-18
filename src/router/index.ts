@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import { homepageRoutes } from '@/components/hompepage/homepage.routes'
+import { homepageRoutes } from '@/components/homepage/homepage.routes'
 import { setTitle } from '@/components/helpers/dom'
 
 const routes: Array<RouteRecordRaw> = [...homepageRoutes]
